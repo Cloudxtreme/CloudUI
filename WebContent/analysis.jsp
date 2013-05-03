@@ -11,6 +11,12 @@
 	import="org.jfree.data.general.*"
 	import="org.jfree.util.Rotation"
 	import="org.jfree.ui.*"
+	import="com.mongodb.BasicDBObject"
+	import="com.mongodb.DB"
+ 	import="com.mongodb.DBCollection"
+ 	import="com.mongodb.DBCursor"
+ 	import="com.mongodb.MongoClient"
+ 	import="java.net.UnknownHostException"
 	%>
 <% UserBean currentUser = (UserBean) (session.getAttribute("currentSessionUser"));
  if(currentUser==null){
@@ -28,10 +34,34 @@
 </head>
 <body>
 <%
+
+MongoClient mongoClient = null;
+try {
+		mongoClient = new MongoClient();
+	} catch (UnknownHostException e1) {
+		// TODO Auto-generated catch block
+		e1.printStackTrace();
+	}
+MongoClient mongoClient1 = null;
+try {
+		mongoClient1 = new MongoClient();
+	} catch (UnknownHostException e1) {
+		// TODO Auto-generated catch block
+		e1.printStackTrace();
+	}
+DB db = mongoClient.getDB( "test" );
+DBCollection coll;
+coll = db.getCollection("test");
+int ddos = coll.find().count();
+DB db1 = mongoClient1.getDB( "test1" );
+DBCollection coll1;
+coll1 = db1.getCollection("test1");
+float injection = coll1.find().count();
+injection/=2;
 final DefaultPieDataset pieDataset = new DefaultPieDataset();
-pieDataset.setValue("DDOS Attacks", new Integer(1));
-pieDataset.setValue("SQL Injection Attacks", new Integer(1));
-pieDataset.setValue("XSS Attacks", new Integer(1));
+pieDataset.setValue("DDOS Attacks", new Integer(ddos));
+pieDataset.setValue("SQL Injection Attacks", new Float(injection));
+pieDataset.setValue("XSS Attacks", new Float(injection));
 final JFreeChart chart = ChartFactory.createPieChart3D(
         "Pie Chart 3D Analysis View",  // chart title
         pieDataset,                   // data
