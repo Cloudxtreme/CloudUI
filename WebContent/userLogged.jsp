@@ -38,6 +38,7 @@ charset=windows-1256"
  </form>
  <h2><b>Below Are The List Of Blocked Ip Addresses</b></h2>
  <center><b><a href="analysis.jsp">Analysis Charts Of Attack Patterns</a></b><br/><br/></center>
+ <center><b><a href="geolocation.jsp">Geo-location Of cCities from where attacks Originated</a></b><br/><br/></center>
  <form action="RemoveParam" method="post">
  <%
  MongoClient mongoClient = null;
