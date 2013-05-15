@@ -27,19 +27,24 @@
 <%! 
 Connection con = null; 
 ResultSet rs = null; 
+ResultSet rs1 = null; 
 Statement stmt = null;
+Statement stmt1 = null;
 GeoLocation $gl;
 String ipaddress = null;
 Double lat;
 Double lon;
-Double a[][]= new Double[3][2];
+int count;
+Double a[][];
 int i=0;
 %>
 <%
 String query="select * from iptable";
+String coun = "select count(*) from iptable";
 con = ConnectionManager.getConnection();
 try {
 	stmt=con.createStatement();
+	stmt1=con.createStatement();
 } catch (SQLException e1) {
 	// TODO Auto-generated catch block
 	request.getSession().invalidate();
@@ -47,6 +52,7 @@ try {
 }
 try {
 	rs = stmt.executeQuery(query);
+	rs1 = stmt1.executeQuery(coun);
 } catch (SQLException e) {
 	// TODO Auto-generated catch block
 	request.getSession().invalidate();
@@ -54,7 +60,13 @@ try {
 }
 %>
 <%
-while(rs.next() && i<3)
+if(rs1.next())
+{
+	count = rs1.getInt(1);
+	rs1.close();
+	a= new Double[count][2];
+}
+while(rs.next() && i<count)
 {
 	
 	try {
@@ -74,7 +86,11 @@ while(rs.next() && i<3)
 		e.printStackTrace();
 	}
 }
-
+rs.close();
+rs1.close();
+stmt.close();
+stmt1.close();
+con.close();
 %>
 <div id="map" style="width: 500px; height: 400px;"></div>
 
@@ -95,7 +111,7 @@ while(rs.next() && i<3)
     var i;
 
     for (i = 0; i < locations.length; i++) {  
-    	<%for(int i=0;i<3;i++){%>
+    	<%for(int i=0;i<count;i++){%>
       marker = new google.maps.Marker({
         position: new google.maps.LatLng(<%=a[i][0]%>, <%=a[i][1]%>),
         map: map
