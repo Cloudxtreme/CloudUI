@@ -20,8 +20,10 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>GeoLocation</title>
-<script src="http://maps.google.com/maps/api/js?sensor=false" 
-          type="text/javascript"></script>
+<script type="text/javascript"
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDdg4QGL4bIavcQAg5chLQ3uM9xd7BQhkA&sensor=false">
+</script>
+
 </head>
 <body>
 <%! 
@@ -36,7 +38,6 @@ Double lat;
 Double lon;
 int count;
 Double a[][];
-int i=0;
 %>
 <%
 String query="select * from iptable";
@@ -63,9 +64,9 @@ try {
 if(rs1.next())
 {
 	count = rs1.getInt(1);
-	rs1.close();
 	a= new Double[count][2];
 }
+int i=0;
 while(rs.next() && i<count)
 {
 	
@@ -86,13 +87,9 @@ while(rs.next() && i<count)
 		e.printStackTrace();
 	}
 }
-rs.close();
-rs1.close();
-stmt.close();
-stmt1.close();
-con.close();
+
 %>
-<div id="map" style="width: 500px; height: 400px;"></div>
+<div id="map" style="width: 1185px; height: 660px;"></div>
 
   <script type="text/javascript">
     var locations = [
@@ -102,7 +99,8 @@ con.close();
     var map = new google.maps.Map(document.getElementById('map'), {
       zoom: 11,
       center: new google.maps.LatLng(<%=lat%>, <%=lon%>),
-      mapTypeId: google.maps.MapTypeId.ROADMAP
+      mapTypeId: google.maps.MapTypeId.ROADMAP,
+      mapTypeControl: false
     });
 
     var infowindow = new google.maps.InfoWindow();
@@ -111,8 +109,8 @@ con.close();
     var i;
 
     for (i = 0; i < locations.length; i++) {  
-    	<%for(int i=0;i<count;i++){%>
-      marker = new google.maps.Marker({
+    	<%for(i=0;i<count;i++){%>
+      	marker = new google.maps.Marker({
         position: new google.maps.LatLng(<%=a[i][0]%>, <%=a[i][1]%>),
         map: map
       });<%}%>
