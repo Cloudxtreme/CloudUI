@@ -5,13 +5,36 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>ForgotPassword</title>
+<style>
+.form{
+width:350px;
+box-shadow: 10px 10px 5px #888888;
+background-color:#c4c6ca;
+position: absolute;
+left: 395px;
+top: 356px;
+height:300px;
+}
+.image{
+width:1198px;
+height:529px;
+border-bottom-style:solid;
+border-width:2px;
+background-image:url("nupur.png");
+margin-top:-199px;
+}
+</style>
 </head>
 <body>
+<div class="image">
+</div>
+<div class="form">
 <form action="ForgotPass" method="post">
-Enter Your Email Address To Receive Password:<input type="text" name="email"/><br/><br/>
+Enter Your Email Address:<input type="text" name="email"/><br/><br/>
 <img src="<c:url value="simpleCaptcha.png" />"/><br />
 Answer:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <input name="answer" /> 
 <input type="submit" value="Get Password"/>
 </form>
+</div>
 </body>
 </html>

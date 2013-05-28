@@ -5,8 +5,30 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>New User Register</title>
+<style>
+.image{
+width:1198px;
+height:529px;
+border-bottom-style:solid;
+border-width:2px;
+background-image:url("nupur.png");
+margin-top:-199px;
+}
+.myform{
+box-shadow: 10px 10px 5px #888888;
+background-color:#c4c6ca;
+width:600px;
+width: 772px;
+top:10px;
+position:relative;
+left: 200px;
+}
+</style>
 </head>
 <body>
+<div class="image">
+</div>
+<div class="myform">
 <form action="Register">
 FirstName*&nbsp&nbsp&nbsp&nbsp&nbsp<input type="text" name="first"/>
 &nbsp&nbspLastName*&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="text" name="last"/><br/><br/>
@@ -25,5 +47,6 @@ PIN*&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&
 Answer:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <input name="answer" /> 
 <input type="submit" name="submit" value="Register"/>
 </form>
+</div>
 </body>
 </html>

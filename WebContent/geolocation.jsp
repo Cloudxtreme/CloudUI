@@ -97,7 +97,7 @@ while(rs.next() && i<count)
     ];
 
     var map = new google.maps.Map(document.getElementById('map'), {
-      zoom: 11,
+      zoom: 6,
       center: new google.maps.LatLng(<%=lat%>, <%=lon%>),
       mapTypeId: google.maps.MapTypeId.ROADMAP,
       mapTypeControl: false
