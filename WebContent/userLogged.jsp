@@ -9,6 +9,11 @@ charset=windows-1256"
  import="com.mongodb.DBCursor"
  import="com.mongodb.MongoClient"
  import="java.net.UnknownHostException"
+ import="java.io.IOException"
+ import="java.io.InputStream"
+ import="javazoom.jl.decoder.JavaLayerException"
+ import="com.gtranslate.Audio"
+ import="com.gtranslate.Language"
   %> 
   <% UserBean currentUser = (UserBean) (session.getAttribute("currentSessionUser"));
  if(currentUser==null){
@@ -17,28 +22,65 @@ charset=windows-1256"
 	 
 	 
  }
- else{%><%out.println("Welcome"+" " + currentUser.getFirstName() + " " + currentUser.getLastName());%>
+ else{%><p  style="text-shadow:20px 11px 0 rgba(0,0,0,0);font-weight:normal;font-style:italic;font-variant:small-caps;color:#000000;letter-spacing:1pt;word-spacing:2pt;font-size:17px;text-align:left;font-family:palatino linotype, palatino, serif;line-height:2;position: relative;">
+ <%
+ out.println("Welcome"+" " + currentUser.getFirstName() + " " + currentUser.getLastName());
+ /*Audio audio = Audio.getInstance();
+	InputStream sound = null;
+	try {
+		sound = audio.getAudio("Hello"+currentUser.getFirstName()+currentUser.getLastName(), Language.ENGLISH);
+	} catch (IOException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+	try {
+		audio.play(sound);
+	} catch (JavaLayerException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}*/
+ %></p>
  
  <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"> <html> 
  <head>
  <meta http-equiv="Content-Type" content="text/html; charset=windows-1256"> 
  <title> Configuration Page </title>
- </head> <body> <center>
+ </head> 
+ <style>
+ .form1{
+ width:400px;
+ height:200px;
+ }
+ </style>
+ <body> 
+ <center>
+ <div>
  <form action="${pageContext.request.contextPath}/Logout" method="post">
-    <input type="submit" value="Logout" />
+ <input style="width:150px;text-shadow:20px 11px 0 rgba(0,0,0,0);font-weight:normal;font-style:italic;font-variant:small-caps;color:#000000;letter-spacing:1pt;word-spacing:2pt;font-size:17px;text-align:center;font-family:palatino linotype, palatino, serif;line-height:2;position: relative; left:auto;top:auto;" type="submit" value="Logout"/>
 </form>
+</div>
 
  
- <p>This is the Configuration Page For Your IDS</p>
+ <p  style="text-shadow:20px 11px 0 rgba(0,0,0,0);font-weight:normal;font-style:italic;font-variant:small-caps;color:#000000;letter-spacing:1pt;word-spacing:2pt;font-size:17px;text-align:left;font-family:palatino linotype, palatino, serif;line-height:2;position: relative; left: 380px;top:5px;">This is the Configuration Page For Your IDS</p>
+ <div class="form1">
  <form action="InputParam" method="post">
- Input Threshold Request Counts:<input type="text" name="count" placeholder="input integer like 1,2,3" /><br/><br/>
- Input Threshold Time:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="text" name="time" placeholder="Input Integer like 1,2,3"/><br/><br/>
- Range of IP address to block:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="text" name="range" placeholder="eg- input 192.168 for the whole range"/><br/><br/>
- <input type="submit" value="Assign Values"/>
+ <p  style="text-shadow:20px 11px 0 rgba(0,0,0,0);font-weight:normal;font-style:italic;font-variant:small-caps;color:#000000;letter-spacing:1pt;word-spacing:2pt;font-size:17px;text-align:left;font-family:palatino linotype, palatino, serif;line-height:2;position: relative; left: 40px;top:5px;">Input Threshold Request Counts*<input type="text" name="count" placeholder="input integer like 1,2,3" size="30" /></p>
+ <p  style="text-shadow:20px 11px 0 rgba(0,0,0,0);font-weight:normal;font-style:italic;font-variant:small-caps;color:#000000;letter-spacing:1pt;word-spacing:2pt;font-size:17px;text-align:left;font-family:palatino linotype, palatino, serif;line-height:2;position: relative; left: 40px;top:5px;">Input Threshold Time*<input type="text" name="time" placeholder="Input Integer/time in ms" size="30"/></p>
+ <p  style="text-shadow:20px 11px 0 rgba(0,0,0,0);font-weight:normal;font-style:italic;font-variant:small-caps;color:#000000;letter-spacing:1pt;word-spacing:2pt;font-size:17px;text-align:left;font-family:palatino linotype, palatino, serif;line-height:2;position: relative; left: 40px;top:5px;">Range of IP address to block*<input type="text" name="range" placeholder="eg- input 192.168 for the whole range" size="30"/></p>
+ <input style="width:150px;text-shadow:20px 11px 0 rgba(0,0,0,0);font-weight:normal;font-style:italic;font-variant:small-caps;color:#000000;letter-spacing:1pt;word-spacing:2pt;font-size:17px;text-align:center;font-family:palatino linotype, palatino, serif;line-height:2;position: relative; left:auto;top:auto;" type="submit" value="Assign Values"/>
  </form>
- <h2><b>Below Are The List Of Blocked Ip Addresses</b></h2>
- <center><b><a href="analysis.jsp">Analysis Charts Of Attack Patterns</a></b><br/><br/></center>
- <center><b><a href="geolocation.jsp">Geo-location Of Cities from where attacks Originated</a></b><br/><br/></center>
+ </div>
+ <br/>
+ <br/>
+ <div>
+ <h2 style="text-shadow:20px 11px 0 rgba(0,0,0,0.2);font-weight:bold;text-decoration:underline;font-style:italic;font-variant:small-caps;color:#000000;letter-spacing:1pt;word-spacing:2pt;font-size:28px;text-align:left;font-family:palatino linotype, palatino, serif;line-height:2;position: relative; left: 440px;"><b>Analysis Reporting</b></h2>
+ <center><b><p  style="text-shadow:20px 11px 0 rgba(0,0,0,0);font-weight:normal;font-style:italic;font-variant:small-caps;color:#000000;letter-spacing:1pt;word-spacing:2pt;font-size:17px;text-align:left;font-family:palatino linotype, palatino, serif;line-height:2;position: relative; left: 420px;top:5px;"><a href="analysis.jsp">Analysis Charts Of Attack Patterns</a></p></b></center>
+ <center><b><p  style="text-shadow:20px 11px 0 rgba(0,0,0,0);font-weight:normal;font-style:italic;font-variant:small-caps;color:#000000;letter-spacing:1pt;word-spacing:2pt;font-size:17px;text-align:left;font-family:palatino linotype, palatino, serif;line-height:2;position: relative; left: 340px;top:5px;"><a href="geolocation.jsp">Geo-location Of Cities from where attacks Originated</a></p></b></center>
+ </div>
+ <div>
+ <h2 style="text-shadow:20px 11px 0 rgba(0,0,0,0.2);font-weight:bold;text-decoration:underline;font-style:italic;font-variant:small-caps;color:#000000;letter-spacing:1pt;word-spacing:2pt;font-size:28px;text-align:left;font-family:palatino linotype, palatino, serif;line-height:2;position: relative; left: 277px;"><b>Below Are The List Of Blocked Ip Addresses</b></h2>
+ 
+  <h2 style="text-shadow:20px 11px 0 rgba(0,0,0,0.2);font-weight:bold;text-decoration:underline;font-style:italic;font-variant:small-caps;color:#000000;letter-spacing:1pt;word-spacing:2pt;font-size:28px;text-align:left;font-family:palatino linotype, palatino, serif;line-height:2;position: relative; left: 310px;"><b>DDOS Attackers Blocked IP Addresses</b></h2>
  <form action="RemoveParam" method="post">
  <%
  MongoClient mongoClient = null;
@@ -74,9 +116,11 @@ charset=windows-1256"
 	   mongoClient.close();
 	}
  %>
- <br/><input type="submit" value="Remove"/>
+ <br/><input style="width:150px;text-shadow:20px 11px 0 rgba(0,0,0,0);font-weight:normal;font-style:italic;font-variant:small-caps;color:#000000;letter-spacing:1pt;word-spacing:2pt;font-size:17px;text-align:center;font-family:palatino linotype, palatino, serif;line-height:2;position: relative; left:auto;top:auto;" type="submit" value="Remove"/>
  </form>
-  <form action="RemoveParam1" method="post">
+ 
+ <h2 style="text-shadow:20px 11px 0 rgba(0,0,0,0.2);font-weight:bold;text-decoration:underline;font-style:italic;font-variant:small-caps;color:#000000;letter-spacing:1pt;word-spacing:2pt;font-size:28px;text-align:left;font-family:palatino linotype, palatino, serif;line-height:2;position: relative; left: 277px;"><b>Injection Attackers Captured Ip Addresses</b></h2>
+ <form action="RemoveParam1" method="post">
  <%
  MongoClient mongoClient1 = null;
  try {
@@ -111,8 +155,9 @@ charset=windows-1256"
 	   mongoClient1.close();
 	}
  %>
- <br/><input type="submit" value="Remove"/>
+ <br/><input style="width:150px;text-shadow:20px 11px 0 rgba(0,0,0,0);font-weight:normal;font-style:italic;font-variant:small-caps;color:#000000;letter-spacing:1pt;word-spacing:2pt;font-size:17px;text-align:center;font-family:palatino linotype, palatino, serif;line-height:2;position: relative; left:auto;top:auto;" type="submit" value="Remove"/>
  </form>
+ </div>
  </center> 
  </body>
  </html>
