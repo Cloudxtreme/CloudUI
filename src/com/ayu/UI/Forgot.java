@@ -31,7 +31,7 @@ public class Forgot {
 	public void sendSSLMail(String text,String toMail) {
 
 		final String username = "clouddefenceids";
-		final String password = "";
+		final String password = "Cloud@123";
  
 		Properties props = new Properties();
 		props.put("mail.smtp.auth", "true");

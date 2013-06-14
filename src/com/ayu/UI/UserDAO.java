@@ -26,18 +26,19 @@ public class UserDAO {
 	static ResultSet rs = null; 
 	public static UserBean login(UserBean bean) 
 	{ //preparing some objects for connection 
-		Statement stmt = null; 
+		PreparedStatement stmt = null; 
 		String username = bean.getUsername(); 
 		String password = bean.getPassword(); 
-		String searchQuery = "select * from users where username='" + username + "' AND password='" + password + "'";
 		// "System.out.println" prints in the console; Normally used to trace the process 
 		//System.out.println("Your user name is " + username); 
 		//System.out.println("Your password is " + password); 
 		//System.out.println("Query: "+searchQuery); 
 		try { //connect to DB 
 			currentCon = ConnectionManager.getConnection(); 
-			stmt=currentCon.createStatement();
-			rs = stmt.executeQuery(searchQuery);
+			stmt = currentCon.prepareStatement("select * from users where username=? and password=?");
+			stmt.setString(1, username);
+			stmt.setString(2, password);
+			rs = stmt.executeQuery();
 			boolean more = rs.next(); // if user does not exist set the isValid variable to false
 			if (!more)
 			{ 
